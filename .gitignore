@@ -1,2 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# virtual env
 .env
-.DS_store
+.venv/
+env/
+venv/
+
+# macOS
+.DS_Store
+
+# data
+data/
