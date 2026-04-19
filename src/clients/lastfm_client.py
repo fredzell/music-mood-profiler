@@ -40,6 +40,35 @@ class LastFMClient:
             params["to"] = to_ts
         
         return self._get(params)
+    
+    def get_track_tags(self, artist: str, track: str) -> list[str]:
+        try:
+            data = self._get({
+                "method": "track.getTopTags",
+                "artist": artist,
+                "track": track
+            })
+            
+            tags = data.get("toptags", {}).get("tag", [])
+            return [t["name"] for t in tags if int(t.get("count", 0)) > 0]
+        
+        except Exception as e:
+            print("Track tags error:", e)
+            return []
+    
+    def get_artist_tags(self, artist: str) -> list[str]:
+        try:
+            data = self._get({
+                "method": "artist.getTopTags",
+                "artist": artist
+            })
+            
+            tags = data.get("toptags", {}).get("tag", [])
+            return [t["name"] for t in tags if int(t.get("count", 0)) > 0]
+        
+        except Exception as e:
+            print("Artist tags error:", e)
+            return []
 
 if __name__ == "__main__":
     from src.config import LASTFM_API_KEY
