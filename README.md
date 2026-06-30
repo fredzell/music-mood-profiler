@@ -22,7 +22,7 @@ This project explores 19 years of personal listening history using Last.fm data,
 
 ## Problem statement
 
-The purpose of this experiment was to analyse the evolution of musical preferences over the last 19 years, based on 72k Last.fm records and 14k unique artist–track combinations enriched with genre metadata. Listening history spans 2007–2026. For longitudinal analyses, only complete years (2008–2025) were included. Partial years 2007 and 2026 were excluded from trend calculations to avoid sampling bias.
+The purpose of this experiment was to analyse the evolution of musical preferences over the last 19 years, based on 72k Last.fm records and 14k unique artist–track combinations enriched with genre metadata. Although the listening history spans 2007–2026, only complete years (2008–2025) were included in the temporal analyses to avoid sampling bias.
 
 ## Analytical unit
 
