@@ -163,11 +163,13 @@ Raw Last.fm exports and intermediate datasets are excluded from version control 
 
 The notebooks should be executed in the following order:
 
-```1. 01_lastfm_rawmerging.ipynb
+```
+1. 01_lastfm_rawmerging.ipynb
 2. 02_lastfm_cleaning.ipynb
 3. 03_lastfm_tags_enrichment.ipynb
 4. 04_lastfm_tag_normalization.ipynb
 5. 05_lastfm_tags_clustering.ipynb
 6. 06_lastfm_clusters_visualization.ipynb
-7. 07_music_taste_evolution.ipynb```
+7. 07_music_taste_evolution.ipynb
+```
 
