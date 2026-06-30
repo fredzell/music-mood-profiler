@@ -13,5 +13,10 @@ venv/
 # macOS
 .DS_Store
 
-# data
+# data artifacts
 data/
+*.pkl
+*.parquet
+
+# cache
+*.cache
