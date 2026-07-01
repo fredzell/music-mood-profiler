@@ -12,13 +12,37 @@ This project explores 19 years of personal listening history using Last.fm data,
 
 ## Technologies
 
-- Python
+- Python 3.11
 - pandas
 - NumPy
 - scikit-learn
 - UMAP
 - matplotlib
+- SciPy
 - Last.fm API
+- Jupyter Notebook
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/fredzell/music-mood-profiler.git
+cd music-mood-profiler
+```
+
+Create a Conda environment (recommended):
+
+```bash
+conda create -n music-mood python=3.11
+conda activate music-mood
+```
+
+Install the required packages:
+
+```bash
+pip install -r requirements.txt
+```
 
 ## Problem statement
 
@@ -171,5 +195,11 @@ The notebooks should be executed in the following order:
 5. 05_lastfm_tags_clustering.ipynb
 6. 06_lastfm_clusters_visualization.ipynb
 7. 07_music_taste_evolution.ipynb
+
+Notebook `07_music_taste_evolution.ipynb` uses the final processed dataset generated in notebook 06 (`music_taste_analysis_ready.csv`).
 ```
 
+## Notes
+
+The notebooks were developed incrementally during the project.
+Intermediate artifacts were exported as CSV files for maximum compatibility across environments
