@@ -1,4 +1,4 @@
-Music Mood Profiler is a personal music analytics project built on Last.fm listening history.
+**Music Mood Profiler** is a personal music analytics project built on Last.fm listening history.
 
 This repository currently focuses on **Music Taste Evolution (2007–2026)** — an analysis of long-term listening habits based on genre metadata, TF-IDF vectorization, clustering and temporal analysis.
 
