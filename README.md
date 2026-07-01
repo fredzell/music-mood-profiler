@@ -202,8 +202,6 @@ The notebooks should be executed in the following order:
 5. 05_lastfm_tags_clustering.ipynb
 6. 06_lastfm_clusters_visualization.ipynb
 7. 07_music_taste_evolution.ipynb
-
-Notebook `07_music_taste_evolution.ipynb` uses the final processed dataset generated in notebook 06 (`music_taste_analysis_ready.csv`).
 ```
 
 ## Notes
