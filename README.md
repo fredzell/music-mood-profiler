@@ -1,6 +1,6 @@
 **Music Mood Profiler** is a personal music analytics project built on Last.fm listening history.
 
-This repository currently focuses on **Music Taste Evolution (2007–2026)** — an analysis of long-term listening habits based on genre metadata, TF-IDF vectorization, clustering and temporal analysis.
+This repository currently focuses on **Music Taste Evolution (2007–2026)** — an analysis of long-term listening habits based on genre metadata, unsupervised learning and temporal analysis.
 
 Future extensions will include lyric-based mood analysis and other listening behavior studies.
 
@@ -18,15 +18,16 @@ This project explores 19 years of personal listening history using Last.fm data,
 
 ## Technologies
 
-- Python 3.11
+- Python
 - pandas
 - NumPy
 - scikit-learn
+- TF-IDF Vectorizer
+- TruncatedSVD
 - UMAP
-- matplotlib
-- SciPy
+- K-Means
+- Matplotlib
 - Last.fm API
-- Jupyter Notebook
 
 ## Installation
 
