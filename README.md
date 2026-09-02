@@ -53,7 +53,7 @@ pip install -r requirements.txt
 
 ## Problem statement
 
-The purpose of this experiment was to analyse the evolution of musical preferences over the last 19 years, based on 72k Last.fm records and 14k unique artist–track combinations enriched with genre metadata. Although the listening history spans 2007–2026, only complete years (2008–2025) were included in the temporal analyses to avoid sampling bias.
+The purpose of this experiment was to analyse the evolution of musical preferences over the last 19 years, based on 72,823 unique artist–track combinations and 13,701 unique artists enriched with genre metadata. Although the listening history spans 2007–2026, only complete years (2008–2025) were included in the temporal analyses to avoid sampling bias.
 
 ## Analytical unit
 
@@ -67,7 +67,9 @@ This allows the experiment to focus on repertoire evolution and music discovery 
 - Last.fm API
 
 **Dataset**
-- 72,823 scrobbles (2007–2026)
+- Raw Last.fm scrobbles: 548,597
+- Analytical dataset: 72,823 unique artist–track combinations
+- Unique artists: 13,701
 
 **Analytical unit**
 - Unique artist–track combinations after cleaning and normalization
