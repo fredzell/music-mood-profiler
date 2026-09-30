@@ -291,7 +291,7 @@ time, but also with changes in the composition of the musical repertoire.
 
 ## NRC vs. Transformer
 
-![NRC vs Transformer agreement](docs/images/nrc_transformer_agreement.png)
+![NRC vs Transformer agreement](docs/images/02_04_nrc_and_transformer_agreement.png)
 
 The NRC and transformer approaches showed limited agreement in their absolute
 emotion profiles. NRC profiles were dominated by lexical associations with joy,
