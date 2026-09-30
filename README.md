@@ -1,20 +1,23 @@
-**Music Mood Profiler** is a personal music analytics project built on Last.fm listening history.
+# Music Mood Profiler
 
-This repository currently focuses on **Music Taste Evolution (2007–2026)** — an analysis of long-term listening habits based on genre metadata, unsupervised learning and temporal analysis.
+**Music Mood Profiler** is a personal music analytics project built on Last.fm listening history and song lyrics.
 
-Future extensions will include lyric-based mood analysis and other listening behavior studies.
+The repository explores two complementary dimensions of long-term music taste:
 
-# Music Taste Evolution (2007–2026)
+1. **Music Taste Evolution (2007–2026)** — changes in genre composition,
+   music discovery, diversity, artist concentration and retention.
+2. **Lyrics Sentiment & Emotion Analysis** — changes in the emotional content
+   of lyrics using both lexicon-based and transformer-based NLP methods.
 
-This project explores 19 years of personal listening history using Last.fm data, genre-tag enrichment, TF-IDF vectorization, UMAP projection and clustering techniques. The goal was to understand how musical preferences evolved over time and identify long-term trends in discovery, diversity and genre composition.
+## Project Highlights
 
-## Highlights
-
-- 72,823 Last.fm scrobbles spanning 19 years
-- 14k unique artist–track combinations
-- Genre enrichment using Last.fm API
-- TF-IDF + TruncatedSVD + K-Means + UMAP workflow
-- Longitudinal analysis of music discovery and genre evolution
+- 19 years of Last.fm listening history
+- 548k+ raw scrobbles and 72k+ unique artist–track combinations
+- Genre enrichment and unsupervised music clustering
+- Longitudinal analysis of discovery, diversity and artist retention
+- Lyrics dataset enriched with language detection and emotion features
+- Lexicon-based and transformer-based NLP emotion analysis
+- Comparison of lexical and contextual emotion representations
 
 ## Technologies
 
@@ -28,6 +31,9 @@ This project explores 19 years of personal listening history using Last.fm data,
 - K-Means
 - Matplotlib
 - Last.fm API
+- PyTorch
+- Hugging Face Transformers
+- NRC Emotion lexicon
 
 ## Installation
 
@@ -37,19 +43,33 @@ Clone the repository:
 git clone https://github.com/fredzell/music-mood-profiler.git
 cd music-mood-profiler
 ```
+### Main environment
 
-Create a Conda environment (recommended):
+Notebooks 01–09 use the main music-mood environment:
 
 ```bash
 conda create -n music-mood python=3.11
 conda activate music-mood
-```
-
-Install the required packages:
-
-```bash
 pip install -r requirements.txt
 ```
+
+The transformer environment was tested with Python 3.11, NumPy 1.26.4,
+PyTorch 2.2.2, and Transformers 4.57.6.
+
+### Transformer environment
+
+Notebook 10 (`10_sentiment_and_emotion_transformer_analysis.ipynb`) uses a separate
+environment to isolate the PyTorch/Transformers dependency stack:
+
+```bash
+conda create -n music-transformer python=3.11
+conda activate music-transformer
+pip install -r requirements-transformer.txt
+```
+
+# Music Taste Evolution (2007–2026)
+
+This project explores 19 years of personal listening history using Last.fm data, genre-tag enrichment, TF-IDF vectorization, UMAP projection and clustering techniques. The goal was to understand how musical preferences evolved over time and identify long-term trends in discovery, diversity and genre composition.
 
 ## Problem statement
 
@@ -119,11 +139,11 @@ Genre tags were transformed into TF-IDF vectors. The resulting feature space was
 
 ### 1. Evolution of musical preferences
 
-![alt text](docs/images/evolution.png)
+![Evolution of musical preferences](docs/images/evolution.png)
 
 The musical repertoire became increasingly centered around Alternative Core and Electronic & Ambient music, while Rock & Britrock steadily declined. Despite these shifts, Alternative Core remained the dominant category throughout the entire period.
 
-![alt text](docs/images/share_change.png)
+![Change in Listening Share](docs/images/share_change.png)
 
 Between 2008 and 2025, listening shifted away from Rock & Britrock (-23.5 pp) toward Alternative Core (+12.9 pp) and Electronic & Ambient (+10.7 pp), while Singer-Songwriter preferences remained stable.
 
@@ -139,7 +159,7 @@ Between 2008 and 2025, listening shifted away from Rock & Britrock (-23.5 pp) to
 
 ### 2. New artists discovered per year (music discovery)
 
-![alt text](docs/images/discovery.png)
+![Music discovery](docs/images/discovery.png)
 
 Early years (2008-2014) were characterized by active exploration and gradual expansion of the listening library. Discovery activity peaked between 2016 and 2017, with more than 1,500 newly explored artists in a single year. Although discovery activity declined after the peak, it remained stable and significantly higher than during the first years of listening history.
 
@@ -147,7 +167,7 @@ This raises an interesting question: did increased music discovery translate int
 
 ### 3. Music taste diversity over time
 
-![alt text](docs/images/diversity.png)
+![Music taste diversity](docs/images/diversity.png)
 
 Diversity was measured using normalized Shannon entropy calculated on yearly macro-cluster distributions of unique artist–track combinations. Higher values indicate a more balanced distribution across musical categories.
 Listening diversity peaked around 2010–2011 and remained relatively stable for nearly a decade. After 2020, diversity gradually declined as listening became increasingly concentrated around Alternative Core and Electronic & Ambient music.
@@ -156,7 +176,7 @@ Listening diversity peaked around 2010–2011 and remained relatively stable for
 
 How much of the yearly repertoire was represented by my top 20 artists?
 
-![alt text](docs/images/concentration.png)
+![Artist concentration over time](docs/images/concentration.png)
 
 The annual repertoire became progressively less concentrated around a small group of recurring artists. The share of the yearly repertoire represented by the top 20 artists fell from 47% in 2010 to below 10% in 2021, reflecting a broader and more exploratory listening pattern.
 
@@ -188,11 +208,133 @@ Artist continuity remained relatively stable throughout the years. While a core 
 - Despite substantial changes in genre composition, a stable alternative core remained present throughout the entire period.
 - Despite continuous discovery of new artists, roughly one quarter to one third of the yearly repertoire remained stable from year to year.
 
-## Data availability
+# Lyrics Sentiment & Emotion Analysis
 
-Raw Last.fm exports and intermediate datasets are excluded from version control because they contain personal listening history and generated artifacts.
+A second stage of the project investigates how the emotional content of lyrics
+varies across time and music clusters.
 
-## Reproducibility
+The analysis was performed on 523 English-language tracks using two complementary
+NLP approaches:
+
+- **NRC Emotion Lexicon (EmoLex)** — a word-emotion association lexicon created
+  by Saif M. Mohammad and Peter D. Turney at the National Research Council Canada,
+  covering eight emotion categories and positive/negative sentiment.
+- **Transformer-based emotion classification** — contextual emotion probabilities
+  estimated with a pretrained DistilRoBERTa model. Longer lyrics were processed
+  in chunks and aggregated into track-level emotion profiles.
+
+## Data
+
+Lyrics were collected from LRCLIB and matched to tracks from the listening dataset. After cleaning and language detection, the final analysis included 523 English-language tracks, enriched with temporal and music-cluster metadata as well as NRC and transformer-based emotion features.
+
+NRC emotion profiles were available for 514 tracks; nine tracks with no NRC emotion matches were excluded from direct NRC–transformer comparisons.
+
+## Experiment pipeline
+```
+Track Dataset
+↓
+Lyrics Collection & Cleaning
+↓
+Language Detection
+↓
+English-Language Lyrics Dataset
+↓
+NRC Lexicon Analysis
+        +
+Transformer Emotion Classification
+↓
+Track-Level Emotion Profiles
+↓
+Temporal & Music-Cluster Analysis
+↓
+NRC vs. Transformer Comparison
+```
+## Methodology
+
+Lyrics were cleaned and filtered to English-language tracks before emotion analysis.
+
+Two complementary approaches were used:
+
+- **NRC Emotion Lexicon (EmoLex)** was used to calculate track-level lexical
+  sentiment and emotion shares based on word-emotion associations.
+- **DistilRoBERTa emotion classification** was used to capture contextual emotion.
+  Lyrics exceeding the model's maximum input length were split into chunks,
+  classified separately, and aggregated into track-level probability distributions.
+
+Emotion profiles were then compared across four temporal eras and the four
+music macro-clusters established in the Music Taste Evolution experiment.
+
+## Key Findings
+
+### 1. Transformer emotion profile by era
+
+![Transformer emotion profiles by era](docs/images/02_01_transformer_emotion_profiles_by_era.png)
+
+The contextual transformer analysis identified fear (~29%) and sadness (~24%)
+as the strongest emotions across the dataset, while joy had a substantially lower
+mean predicted probability (~4%).
+
+Despite some variation across eras, the results do not indicate a simple shift
+from positive to negative emotional content. Instead, individual emotions follow
+distinct temporal trajectories.
+
+### 2. Transformer emotion profile by macro-cluster
+
+![Transformer emotion profiles by music cluster](docs/images/02_02_transformer_emotion_profiles_by_cluster.png)
+
+Emotion profiles differed across music clusters. Electronic & Ambient showed
+relatively high sadness, Singer-Songwriter high fear, and Rock & Britrock relatively
+high anger.
+
+These differences suggest that emotional variation is associated not only with
+time, but also with changes in the composition of the musical repertoire.
+
+## NRC vs. Transformer
+
+![NRC vs Transformer agreement](docs/images/nrc_transformer_agreement.png)
+
+The NRC and transformer approaches showed limited agreement in their absolute
+emotion profiles. NRC profiles were dominated by lexical associations with joy,
+whereas the contextual transformer predominantly identified fear or sadness.
+
+Several temporal trends were nevertheless directionally consistent across methods.
+The results suggest that lexical and contextual approaches capture complementary
+aspects of emotional language rather than interchangeable measurements.
+
+Because the transformer incorporates contextual information, it is treated as the
+primary contextual analysis, while NRC provides an interpretable lexical baseline.
+
+## Limitations
+
+Song lyrics represent a challenging NLP domain because they frequently rely on
+metaphorical and figurative language, repetition, and narrative perspective.
+Repeated choruses may also give recurring lyrical content greater influence on
+track-level emotion profiles.
+
+The transformer model was pretrained on a general emotion-classification task rather
+than specifically on song lyrics, while NRC relies on context-independent word-level
+associations. Neither approach should therefore be interpreted as a ground-truth
+measure of the emotions expressed by a song.
+
+## Conclusions
+
+- Contextual emotion profiles were dominated by fear and sadness rather than joy.
+- Distinct emotion profiles emerged across music clusters, while temporal changes varied by emotion and cluster.
+- NRC and transformer results showed partial but limited agreement, indicating that
+  lexical and contextual approaches capture complementary aspects of lyrical emotion.
+- Overall, the emotional evolution of the lyrics is better characterized as
+  multidimensional and music-cluster-dependent than as a simple positive-to-negative
+  sentiment shift.
+
+# Data availability
+
+Raw Last.fm exports and derived personal listening datasets are excluded from version control because they contain personal listening history.
+
+Song lyrics collected from LRCLIB are not redistributed with this repository.
+
+The NRC Emotion Lexicon (EmoLex) is also not redistributed. It was created by Saif M. Mohammad and Peter D. Turney and can be obtained from the official NRC Emotion Lexicon website, subject to the resource's terms of use.
+
+# Reproducibility
 
 The notebooks should be executed in the following order:
 
@@ -204,9 +346,44 @@ The notebooks should be executed in the following order:
 5. 05_lastfm_tags_clustering.ipynb
 6. 06_lastfm_clusters_visualization.ipynb
 7. 07_music_taste_evolution.ipynb
+8. 08_lyrics_collection.ipynb
+9. 09_sentiment_and_emotion_lexicon_analysis.ipynb
+10. 10_sentiment_and_emotion_transformer_analysis.ipynb
 ```
 
-## Notes
+Notebooks 01–09 should be run using the `music-mood` environment.
+Notebook 10 requires the separate `music-transformer` environment described
+in the Installation section.
+
+# Notes
 
 The notebooks were developed incrementally during the project.
 Intermediate artifacts were exported as CSV files for maximum compatibility across environments
+
+# References
+
+### NRC Emotion Lexicon (EmoLex)
+
+The lexicon-based emotion analysis uses the **NRC Emotion Lexicon (EmoLex)**,
+created by Saif M. Mohammad and Peter D. Turney at the National Research
+Council Canada.
+
+Mohammad, S. M., & Turney, P. D. (2013). *Crowdsourcing a Word–Emotion
+Association Lexicon*. *Computational Intelligence, 29*(3), 436–465.  
+[DOI](https://doi.org/10.1111/j.1467-8640.2012.00460.x)
+
+### Transformer Model
+
+The contextual emotion analysis uses **Emotion English DistilRoBERTa-base**, a
+DistilRoBERTa model fine-tuned for seven emotion classes: anger, disgust, fear,
+joy, neutral, sadness, and surprise.
+
+Hartmann, J. (2022). *Emotion English DistilRoBERTa-base*. Hugging Face.  
+[Model card](https://huggingface.co/j-hartmann/emotion-english-distilroberta-base)
+
+### Lyrics Source
+
+Song lyrics were retrieved from **LRCLIB** using its public API.
+
+LRCLIB. *A free and open-source lyrics service.*  
+[LRCLIB](https://lrclib.net)
