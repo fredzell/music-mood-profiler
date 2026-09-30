@@ -53,9 +53,6 @@ conda activate music-mood
 pip install -r requirements.txt
 ```
 
-The transformer environment was tested with Python 3.11, NumPy 1.26.4,
-PyTorch 2.2.2, and Transformers 4.57.6.
-
 ### Transformer environment
 
 Notebook 10 (`10_sentiment_and_emotion_transformer_analysis.ipynb`) uses a separate
@@ -66,6 +63,9 @@ conda create -n music-transformer python=3.11
 conda activate music-transformer
 pip install -r requirements-transformer.txt
 ```
+
+The transformer environment was tested with Python 3.11, NumPy 1.26.4,
+PyTorch 2.2.2, and Transformers 4.57.6.
 
 # Music Taste Evolution (2007–2026)
 
@@ -225,19 +225,30 @@ NLP approaches:
 
 ## Data
 
-Lyrics were collected from LRCLIB and matched to tracks from the listening dataset. After cleaning and language detection, the final analysis included 523 English-language tracks, enriched with temporal and music-cluster metadata as well as NRC and transformer-based emotion features.
+Lyrics were collected from LRCLIB for a stratified sample of **800 unique
+artist–track combinations** drawn from the listening dataset. The sample was
+balanced across four eras and four music macro-clusters, with 50 tracks randomly
+sampled from each era × macro-cluster stratum (`random_state=42`).
 
-NRC emotion profiles were available for 514 tracks; nine tracks with no NRC emotion matches were excluded from direct NRC–transformer comparisons.
+After lyrics availability filtering, cleaning and language detection, the final
+NLP analysis included **523 English-language tracks**.
+
+NRC emotion profiles were available for 514 tracks; nine tracks with no NRC
+emotion matches were excluded from direct NRC–transformer comparisons.
 
 ## Experiment pipeline
 ```
 Track Dataset
+↓
+Stratified Sampling
+(800 tracks; 50 per era × macro-cluster stratum)
 ↓
 Lyrics Collection & Cleaning
 ↓
 Language Detection
 ↓
 English-Language Lyrics Dataset
+(523 tracks)
 ↓
 NRC Lexicon Analysis
         +
@@ -315,6 +326,11 @@ The transformer model was pretrained on a general emotion-classification task ra
 than specifically on song lyrics, while NRC relies on context-independent word-level
 associations. Neither approach should therefore be interpreted as a ground-truth
 measure of the emotions expressed by a song.
+
+Although the initial lyrics sample was balanced across era × macro-cluster strata,
+lyrics availability in LRCLIB varied across music clusters. The final English-language
+sample therefore does not fully preserve the balance of the original stratified sample,
+which may introduce some coverage bias.
 
 ## Conclusions
 
