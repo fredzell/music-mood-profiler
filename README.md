@@ -317,20 +317,22 @@ primary contextual analysis, while NRC provides an interpretable lexical baselin
 
 ## Limitations
 
+Although the initial lyrics sample was balanced across era × macro-cluster strata,
+lyrics availability in LRCLIB varied across music clusters. The final English-language
+sample therefore does not fully preserve the balance of the original stratified sample,
+which may introduce some coverage bias.
+
 Song lyrics represent a challenging NLP domain because they frequently rely on
 metaphorical and figurative language, repetition, and narrative perspective.
 Repeated choruses may also give recurring lyrical content greater influence on
 track-level emotion profiles.
 
+NRC lexicon coverage was relatively low, with an average of approximately 10.7% of lyric tokens matched to NRC entries. As a result, the lexicon-based emotion profiles are derived from only a subset of the lyrical vocabulary and may miss emotional information expressed through words not represented in the lexicon.
+
 The transformer model was pretrained on a general emotion-classification task rather
 than specifically on song lyrics, while NRC relies on context-independent word-level
 associations. Neither approach should therefore be interpreted as a ground-truth
 measure of the emotions expressed by a song.
-
-Although the initial lyrics sample was balanced across era × macro-cluster strata,
-lyrics availability in LRCLIB varied across music clusters. The final English-language
-sample therefore does not fully preserve the balance of the original stratified sample,
-which may introduce some coverage bias.
 
 ## Conclusions
 
