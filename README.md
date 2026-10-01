@@ -338,11 +338,8 @@ measure of the emotions expressed by a song.
 
 - Contextual emotion profiles were dominated by fear and sadness rather than joy.
 - Distinct emotion profiles emerged across music clusters, while temporal changes varied by emotion and cluster.
-- NRC and transformer results showed partial but limited agreement, indicating that
-  lexical and contextual approaches capture complementary aspects of lyrical emotion.
-- Overall, the emotional evolution of the lyrics is better characterized as
-  multidimensional and music-cluster-dependent than as a simple positive-to-negative
-  sentiment shift.
+- NRC and transformer results showed partial but limited agreement. Given the low NRC lexicon coverage, the lexical analysis is best interpreted as a complementary baseline rather than a complete representation of lyrical emotion.
+- Overall, the emotional evolution of the lyrics is better characterized as multidimensional and music-cluster-dependent than as a simple positive-to-negative sentiment shift.
 
 # Data availability
 
