@@ -210,8 +210,7 @@ Artist continuity remained relatively stable throughout the years. While a core 
 A second stage of the project investigates how the emotional content of lyrics
 varies across time and music clusters.
 
-The analysis was performed on 523 English-language tracks using two complementary
-NLP approaches:
+The analysis was performed on 523 English-language tracks using two NLP approaches:
 
 - **NRC Emotion Lexicon (EmoLex)**: a word-emotion association lexicon created
   by Saif M. Mohammad and Peter D. Turney at the National Research Council Canada,
@@ -305,8 +304,8 @@ Several temporal trends were nevertheless directionally consistent across method
 ## Limitations
 
 Although the initial lyrics sample was balanced across era × macro-cluster strata,
-lyrics availability in LRCLIB varied across music clusters. The final English-language
-sample therefore does not fully preserve the balance of the original stratified sample,
+lyrics availability in LRCLIB varied across music clusters. Therefore, the final English-language
+sample does not fully preserve the balance of the original stratified sample,
 which may introduce some coverage bias.
 
 Song lyrics represent a challenging NLP domain because they frequently rely on
