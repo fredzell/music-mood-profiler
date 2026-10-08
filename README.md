@@ -69,11 +69,11 @@ PyTorch 2.2.2, and Transformers 4.57.6.
 
 # Music Taste Evolution (2007–2026)
 
-This project explores 19 years of personal listening history using Last.fm data, genre-tag enrichment, TF-IDF vectorization, UMAP projection and clustering techniques. The goal was to understand how musical preferences evolved over time and identify long-term trends in discovery, diversity and genre composition.
+This project explores 19 years of personal listening history using Last.fm data, genre-tag enrichment, TF-IDF vectorization, UMAP projection and clustering techniques. The analysis focuses on long-term changes in musical preferences, discovery, diversity and genre composition.
 
 ## Problem statement
 
-The purpose of this experiment was to analyse the evolution of musical preferences over the last 19 years, based on 72,823 unique artist–track combinations and 13,701 unique artists enriched with genre metadata. Although the listening history spans 2007–2026, only complete years (2008–2025) were included in the temporal analyses to avoid sampling bias.
+The experiment examines 19 years of listening history, based on 72,823 unique artist–track combinations and 13,701 unique artists enriched with genre metadata. Although the listening history spans 2007–2026, only complete years (2008–2025) were included in the temporal analyses to avoid sampling bias.
 
 ## Analytical unit
 
@@ -90,9 +90,6 @@ This allows the experiment to focus on changes in the listening repertoire and m
 - Raw Last.fm scrobbles: 548,597
 - Analytical dataset: 72,823 unique artist–track combinations
 - Unique artists: 13,701
-
-**Analytical unit**
-- Unique artist–track combinations after cleaning and normalization
 
 ## Experiment pipeline
 ```
@@ -145,13 +142,13 @@ The musical repertoire became increasingly centered around Alternative Core and 
 
 ![Change in Listening Share](docs/images/share_change.png)
 
-Between 2008 and 2025, listening shifted away from Rock & Britrock (-23.5 pp) toward Alternative Core (+12.9 pp) and Electronic & Ambient (+10.7 pp), while Singer-Songwriter preferences remained stable.
+Between 2008 and 2025, the share of Rock & Britrock in the listening repertoire decreased by 23.5 percentage points, while Alternative Core (+12.9 pp) and Electronic & Ambient (+10.7 pp) gained share. Singer-Songwriter remained relatively stable.
 
 **Key findings**
 
-• Alternative Core remained the largest listening category throughout the period.
+• Alternative Core remained the largest music cluster throughout the period.
 
-• Electronic & Ambient more than doubled its listening share.
+• Electronic & Ambient more than doubled its share of the yearly repertoire.
 
 • Rock & Britrock lost over 20 percentage points between 2008 and 2025.
 
@@ -161,7 +158,7 @@ Between 2008 and 2025, listening shifted away from Rock & Britrock (-23.5 pp) to
 
 ![Music discovery](docs/images/discovery.png)
 
-Early years (2008-2014) were characterized by active exploration and gradual expansion of the listening library. Discovery activity peaked between 2016 and 2017, with more than 1,500 newly explored artists in a single year. Although discovery activity declined after the peak, it remained stable and significantly higher than during the first years of listening history.
+Between 2008 and 2014, the listening library expanded steadily as new artists were discovered. Music discovery peaked in 2017, with more than 1,500 new artists added to the listening repertoire. Although discovery activity declined after the peak, it remained stable and significantly higher than during the first years of listening history.
 
 This raises an interesting question: did increased music discovery translate into greater diversity of musical preferences?
 
@@ -178,7 +175,7 @@ How much of the yearly repertoire was represented by my top 20 artists?
 
 ![Artist concentration over time](docs/images/concentration.png)
 
-The annual repertoire became progressively less concentrated around a small group of recurring artists. The share of the yearly repertoire represented by the top 20 artists fell from 47% in 2010 to below 10% in 2021, reflecting a broader and more exploratory listening pattern.
+The annual repertoire became less concentrated among a small group of artists. The share of the yearly repertoire represented by the top 20 artists fell from 47% in 2010 to below 10% in 2021.
 
 ### 5. Top artists by era
 
@@ -195,7 +192,7 @@ How did these shifts manifest in the listening repertoire?
 
 How often do artists remain part of the yearly repertoire from one year to the next?
 
-![alt text](docs/images/retention.png)
+![Artist retention over time](docs/images/retention.png)
 
 Artist continuity remained relatively stable throughout the years. While a core group of artists persisted across consecutive years (25-35%), the majority of the repertoire was regularly refreshed with newly explored music.
 
@@ -264,7 +261,7 @@ NRC vs. Transformer Comparison
 
 Lyrics were cleaned and filtered to English-language tracks before emotion analysis.
 
-Two complementary approaches were used:
+Two NLP approaches were used:
 
 - **NRC Emotion Lexicon (EmoLex)** was used to calculate track-level lexical
   sentiment and emotion shares based on word-emotion associations.
@@ -285,9 +282,7 @@ The contextual transformer analysis identified fear (~29%) and sadness (~24%)
 as the strongest emotions across the dataset, while joy had a substantially lower
 mean predicted probability (~4%).
 
-Despite some variation across eras, the results do not indicate a simple shift
-from positive to negative emotional content. Instead, individual emotions follow
-distinct temporal trajectories.
+Emotion profiles varied across eras, with different emotions following distinct temporal trends.
 
 ### 2. Transformer emotion profile by macro-cluster
 
@@ -296,9 +291,6 @@ distinct temporal trajectories.
 Emotion profiles differed across music clusters. Electronic & Ambient showed
 relatively high sadness, Singer-Songwriter high fear, and Rock & Britrock relatively
 high anger.
-
-These differences suggest that emotional variation is associated not only with
-time, but also with changes in the composition of the musical repertoire.
 
 ## NRC vs. Transformer
 
@@ -309,8 +301,6 @@ emotion profiles. NRC profiles were dominated by lexical associations with joy,
 whereas the contextual transformer predominantly identified fear or sadness.
 
 Several temporal trends were nevertheless directionally consistent across methods. The results suggest that lexical and contextual approaches provide different perspectives on emotional language.
-
-The transformer-based results form the basis of the contextual emotion analysis.
 
 ## Limitations
 
@@ -369,7 +359,7 @@ in the Installation section.
 # Notes
 
 The notebooks were developed incrementally during the project.
-Intermediate artifacts were exported as CSV files for maximum compatibility across environments
+Intermediate artifacts were exported as CSV files for maximum compatibility across environments.
 
 # References
 
