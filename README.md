@@ -73,7 +73,7 @@ This project explores 19 years of personal listening history using Last.fm data,
 
 ## Problem statement
 
-The experiment examines 19 years of listening history, based on 72,823 unique artist–track combinations and 13,701 unique artists enriched with genre metadata. Although the listening history spans 2007–2026, only complete years (2008–2025) were included in the temporal analyses to avoid sampling bias.
+The main objective was to identify long-term patterns in music discovery, genre preferences, diversity and artist retention. The dataset includes 72,823 unique artist–track combinations and 13,701 artists enriched with genre metadata. Although the listening history spans 2007–2026, only complete years (2008–2025) were included in the temporal analyses to avoid bias from partial years.
 
 ## Analytical unit
 
