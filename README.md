@@ -4,9 +4,9 @@
 
 The repository explores two complementary dimensions of long-term music taste:
 
-1. **Music Taste Evolution (2007–2026)** — changes in genre composition,
+1. **Music Taste Evolution (2007–2026)**: changes in genre composition,
    music discovery, diversity, artist concentration and retention.
-2. **Lyrics Sentiment & Emotion Analysis** — changes in the emotional content
+2. **Lyrics Sentiment & Emotion Analysis**: changes in the emotional content
    of lyrics using both lexicon-based and transformer-based NLP methods.
 
 ## Project Highlights
@@ -77,8 +77,8 @@ The purpose of this experiment was to analyse the evolution of musical preferenc
 
 ## Analytical unit
 
-Temporal analyses are based on unique artist–track combinations rather than scrobble counts.
-This allows the experiment to focus on repertoire evolution and music discovery patterns instead of listening frequency.
+Temporal analyses are based on unique artist–track combinations.
+This allows the experiment to focus on changes in the listening repertoire and music discovery patterns, without weighting tracks by listening frequency.
 
 ## Data collection
 
@@ -216,10 +216,10 @@ varies across time and music clusters.
 The analysis was performed on 523 English-language tracks using two complementary
 NLP approaches:
 
-- **NRC Emotion Lexicon (EmoLex)** — a word-emotion association lexicon created
+- **NRC Emotion Lexicon (EmoLex)**: a word-emotion association lexicon created
   by Saif M. Mohammad and Peter D. Turney at the National Research Council Canada,
   covering eight emotion categories and positive/negative sentiment.
-- **Transformer-based emotion classification** — contextual emotion probabilities
+- **Transformer-based emotion classification**: contextual emotion probabilities
   estimated with a pretrained DistilRoBERTa model. Longer lyrics were processed
   in chunks and aggregated into track-level emotion profiles.
 
@@ -228,7 +228,7 @@ NLP approaches:
 Lyrics were collected from LRCLIB for a stratified sample of **800 unique
 artist–track combinations** drawn from the listening dataset. The sample was
 balanced across four eras and four music macro-clusters, with 50 tracks randomly
-sampled from each era × macro-cluster stratum (`random_state=42`).
+sampled from each era × macro-cluster stratum.
 
 After lyrics availability filtering, cleaning and language detection, the final
 NLP analysis included **523 English-language tracks**.
@@ -308,12 +308,9 @@ The NRC and transformer approaches showed limited agreement in their absolute
 emotion profiles. NRC profiles were dominated by lexical associations with joy,
 whereas the contextual transformer predominantly identified fear or sadness.
 
-Several temporal trends were nevertheless directionally consistent across methods.
-The results suggest that lexical and contextual approaches capture complementary
-aspects of emotional language rather than interchangeable measurements.
+Several temporal trends were nevertheless directionally consistent across methods. The results suggest that lexical and contextual approaches provide different perspectives on emotional language.
 
-Because the transformer incorporates contextual information, it is treated as the
-primary contextual analysis, while NRC provides an interpretable lexical baseline.
+The transformer-based results form the basis of the contextual emotion analysis.
 
 ## Limitations
 
@@ -327,19 +324,18 @@ metaphorical and figurative language, repetition, and narrative perspective.
 Repeated choruses may also give recurring lyrical content greater influence on
 track-level emotion profiles.
 
-NRC lexicon coverage was relatively low, with an average of approximately 10.7% of lyric tokens matched to NRC entries. As a result, the lexicon-based emotion profiles are derived from only a subset of the lyrical vocabulary and may miss emotional information expressed through words not represented in the lexicon.
+NRC lexicon coverage was relatively low, averaging approximately 10.7% per track. As a result, the lexicon-based emotion profiles are derived from only a subset of the lyrical vocabulary and may miss emotional information expressed through words not represented in the lexicon.
 
-The transformer model was pretrained on a general emotion-classification task rather
-than specifically on song lyrics, while NRC relies on context-independent word-level
+The transformer model was pretrained on a general emotion-classification task, while NRC relies on context-independent word-level
 associations. Neither approach should therefore be interpreted as a ground-truth
 measure of the emotions expressed by a song.
 
 ## Conclusions
 
-- Contextual emotion profiles were dominated by fear and sadness rather than joy.
+- Contextual emotion profiles were dominated by fear and sadness.
 - Distinct emotion profiles emerged across music clusters, while temporal changes varied by emotion and cluster.
-- NRC and transformer results showed partial but limited agreement. Given the low NRC lexicon coverage, the lexical analysis is best interpreted as a complementary baseline rather than a complete representation of lyrical emotion.
-- Overall, the emotional evolution of the lyrics is better characterized as multidimensional and music-cluster-dependent than as a simple positive-to-negative sentiment shift.
+- NRC and transformer results showed partial but limited agreement. Given the low NRC lexicon coverage, the lexical analysis serves as a supplementary, word-level perspective on lyrical emotion.
+- Overall, the results suggest that changes in lyrical emotion profiles are multidimensional and vary across music clusters.
 
 # Data availability
 
