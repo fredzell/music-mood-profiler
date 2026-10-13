@@ -2,19 +2,18 @@
 
 **Music Mood Profiler** is a personal music analytics project built on Last.fm listening history and song lyrics.
 
-The repository explores two complementary dimensions of long-term music taste:
+The repository explores two aspects of music taste:
 
-1. **Music Taste Evolution (2007–2026)**: changes in genre composition,
-   music discovery, diversity, artist concentration and retention.
-2. **Lyrics Sentiment & Emotion Analysis**: changes in the emotional content
-   of lyrics using both lexicon-based and transformer-based NLP methods.
+**Music Taste Evolution (2007–2026)**: changes in genre composition, music discovery, diversity, artist concentration and retention.
+
+**Lyrics Sentiment & Emotion Analysis**: patterns in lyrical emotion across time and music clusters, examined using lexicon-based and transformer-based NLP methods.
 
 ## Project Highlights
 
 - 19 years of Last.fm listening history
-- 548k+ raw scrobbles and 72k+ unique artist–track combinations
+- 548k+ raw scrobbles (recorded track plays) and 72k+ unique artist–track combinations
 - Genre enrichment and unsupervised music clustering
-- Longitudinal analysis of discovery, diversity and artist retention
+- Analysis of music discovery, diversity and artist retention over time
 - Lyrics dataset enriched with language detection and emotion features
 - Lexicon-based and transformer-based NLP emotion analysis
 - Comparison of lexical and contextual emotion representations
@@ -69,7 +68,7 @@ PyTorch 2.2.2, and Transformers 4.57.6.
 
 # Music Taste Evolution (2007–2026)
 
-This project explores 19 years of personal listening history using Last.fm data, genre-tag enrichment, TF-IDF vectorization, UMAP projection and clustering techniques. The analysis focuses on long-term changes in musical preferences, discovery, diversity and genre composition.
+The experiment combines Last.fm listening data with genre-tag enrichment, TF-IDF vectorization, dimensionality reduction and clustering to explore how musical preferences have evolved over time.
 
 ## Problem statement
 
@@ -87,7 +86,7 @@ This allows the experiment to focus on changes in the listening repertoire and m
 - Last.fm API
 
 **Dataset**
-- Raw Last.fm scrobbles: 548,597
+- Raw Last.fm scrobbles (recorded track plays): 548,597
 - Analytical dataset: 72,823 unique artist–track combinations
 - Unique artists: 13,701
 
@@ -221,16 +220,11 @@ The analysis was performed on 523 English-language tracks using two NLP approach
 
 ## Data
 
-Lyrics were collected from LRCLIB for a stratified sample of **800 unique
-artist–track combinations** drawn from the listening dataset. The sample was
-balanced across four eras and four music macro-clusters, with 50 tracks randomly
-sampled from each era × macro-cluster stratum.
+Lyrics were collected from LRCLIB for a stratified random sample of 800 unique artist–track combinations drawn from the full dataset of 72,823 unique artist–track combinations. The sample was designed for exploratory analysis, with 50 tracks randomly selected from each of the 16 era × macro-cluster strata (four eras × four music macro-clusters).
 
-After lyrics availability filtering, cleaning and language detection, the final
-NLP analysis included **523 English-language tracks**.
+After filtering for lyrics availability, cleaning and language detection, the final NLP analysis included 523 English-language tracks.
 
-NRC emotion profiles were available for 514 tracks; nine tracks with no NRC
-emotion matches were excluded from direct NRC–transformer comparisons.
+NRC emotion profiles were available for 514 tracks; nine tracks with no NRC emotion matches were excluded from direct NRC–transformer comparisons.
 
 ## Experiment pipeline
 ```
